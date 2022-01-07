@@ -1,0 +1,19 @@
+﻿<div class="my-2 border-bottom border-primary">
+    <p>Title: <b>@this.TheMovie.Title</b></p>
+    <p>Desciption: <b>@this.TheMovie.Description</b></p>
+    <p>Release Date: <b>@this.TheMovie.ReleaseDate.ToShortDateString()</b></p>
+    @if (ShowButton)
+    {
+        <button class="btn btn-outline-primary" @onclick="DeleteMovie">Add new Movie</button>
+    }
+</div>
+
+@code {
+    [Parameter]
+    public MovieDto TheMovie { get; set; }
+
+    [Parameter]
+    public bool ShowButton { get; set; } = false;
+
+    private void DeleteMovie() => Console.WriteLine($"The movie {this.TheMovie.Title} was deleted success");
+}

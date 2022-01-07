@@ -1,0 +1,10 @@
+﻿
+<div>
+    <input class="form-control" @attributes="AddParameters" />
+</div>
+
+
+@code {
+    [Parameter(CaptureUnmatchedValues = true)]
+    public Dictionary<string, object> AddParameters { get; set; }
+}

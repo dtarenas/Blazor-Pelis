@@ -1,0 +1,43 @@
+﻿<hr />
+@if (this.Movies is null)
+{
+    <div class="text-center">
+        <img src="https://c.tenor.com/dO5CaXHvGgAAAAAC/loading-100.gif" loading="lazy" alt="Loading" />
+        <text>Loading...</text>
+    </div>
+}
+else if (this.Movies.Count() == 0)
+{
+    <div class="text-center">
+        <h4 class="fw-bold text-info">No data found</h4>
+    </div>
+}
+else
+{
+
+    <div class="mt-2 pt-2 border border-succcess">
+        <div class="text-center">
+            <h3 class="fw-bold">Movies (List)</h3>
+            <h6 class="p-0">Info</h6>
+
+
+            <div class="custom-control custom-checkbox">
+                <FormInput type="checkbox" class="custom-control-input" id="customCheck1" @onchange="(() => IsShowingDeleteButton = !IsShowingDeleteButton)"></FormInput>
+                <label class="custom-control-label" for="customCheck1">Check this custom checkbox</label>
+            </div>
+
+            @foreach (var movie in this.Movies)
+            {
+                <Movie TheMovie="movie" ShowButton="IsShowingDeleteButton"></Movie>
+            }
+        </div>
+    </div>
+
+}
+
+@code {
+    [Parameter]
+    public IEnumerable<MovieDto> Movies { get; set; }
+
+    internal bool IsShowingDeleteButton = false;
+}

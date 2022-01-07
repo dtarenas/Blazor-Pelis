@@ -8,7 +8,16 @@
 
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
+
+<MovieListing></MovieListing>
+
+<FormInput type="text"></FormInput>
+<FormInput type="textarea"></FormInput>
+<FormInput type="range" name="price" id="price" min="50000" max="500000" step="100" value="250000"></FormInput>
+<FormInput type="datetime-local" name="datetime" id="datetime"></FormInput>
 @code {
+    
+    
     private int currentCount = 0;
 
     private void IncrementCount()
