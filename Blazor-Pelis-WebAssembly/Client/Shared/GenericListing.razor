@@ -1,0 +1,58 @@
+﻿@typeparam TItem
+
+@if (this.List is null)
+{
+    @if (this.Loading is null)
+    {
+        <div class="text-center">
+            <img src="https://c.tenor.com/dO5CaXHvGgAAAAAC/loading-100.gif" loading="lazy" alt="Loading" />
+            <text>Default Loading...</text>
+        </div>
+    }
+    else
+    {
+        @this.Loading
+    }
+
+}
+else if (this.List.Count() == 0)
+{
+    if (this.NotDataFound is null)
+    {
+        <div class="text-center">
+            <h4 class="fw-bold text-info">No data found (Default)</h4>
+        </div>
+    }
+    else
+    {
+        @this.NotDataFound;
+    }
+}
+else
+{
+    <div class="mt-2 pt-2 border border-succcess">
+        <div class="text-center">
+            <h3 class="fw-bold">Movies (List)</h3>
+            <h6 class="p-0">Info</h6>
+
+            @foreach (var movie in this.List)
+            {
+                @Item(movie);
+            }
+        </div>
+    </div>
+}
+
+@code{
+    [Parameter]
+    public IList<TItem> List { get; set; }
+
+    [Parameter]
+    public RenderFragment<TItem> Item {get; set;}
+
+    [Parameter]
+    public RenderFragment NotDataFound { get; set; }
+
+    [Parameter]
+    public RenderFragment Loading { get; set; }
+}

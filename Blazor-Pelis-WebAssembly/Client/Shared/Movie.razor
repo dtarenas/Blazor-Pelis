@@ -4,7 +4,7 @@
     <p>Release Date: <b>@this.TheMovie.ReleaseDate.ToShortDateString()</b></p>
     @if (ShowButton)
     {
-        <button class="btn btn-outline-primary" @onclick="DeleteMovie">Add new Movie</button>
+        <button class="btn btn-outline-primary" @onclick="(() => OnClickEvent.InvokeAsync(this.TheMovie))">Add new Movie</button>
     }
 </div>
 
@@ -15,5 +15,6 @@
     [Parameter]
     public bool ShowButton { get; set; } = false;
 
-    private void DeleteMovie() => Console.WriteLine($"The movie {this.TheMovie.Title} was deleted success");
+    [Parameter]
+    public EventCallback<MovieDto> OnClickEvent { get; set; } 
 }

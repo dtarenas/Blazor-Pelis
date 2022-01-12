@@ -26,20 +26,28 @@
 </div>
 
 
+<MovieListing Movies="this.Movies" ></MovieListing>
 
-<MovieListing Movies="this.GetMovies()"></MovieListing>
+
 @code {
- 
+    protected override async Task OnInitializedAsync()
+    {
+        await Task.Delay(6000);
+        this.Movies = this.GetMovies();
+                                            //return base.OnInitializedAsync();
+    }
 
     string name = "Batolito";
 
     public MovieDto Matrix { get => GetMovie(); }
 
+    public IList<MovieDto> Movies { get; set; }
+
     private MovieDto GetMovie() => new MovieDto() { Description = "Soy una peli", ReleaseDate = DateTime.Now, Title = "Matrix Deceptions" };
 
     private void BtnClickHandler() => Console.WriteLine("Just you clicked me");
 
-    private IEnumerable<MovieDto> GetMovies() => new List<MovieDto>()
+    private IList<MovieDto> GetMovies() => new List<MovieDto>()
     {
         new MovieDto(){ Description = "Soy una peli", ReleaseDate = DateTime.Now, Title = "Matrix 1" },
         new MovieDto(){ Description = "Soy una peli", ReleaseDate = DateTime.Now, Title = "Matrix 2" },
